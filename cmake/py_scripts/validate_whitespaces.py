@@ -21,7 +21,7 @@ def list_files(root_dir):
     git_ls_files_ok = True
     out = subprocess.check_output(['git', 'ls-files', '--exclude-standard', root_dir])
     for filename in out.split('\n'):
-        if not filename or normpath(filename) in files_blacklist or os.path.isdir(filename):
+        if not filename or normpath(filename) in files_blacklist or not os.path.isfile(filename):
             continue
 
         yield filename

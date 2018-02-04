@@ -58,6 +58,7 @@ JointCore_Error Benchmarks_Deinit(Benchmarks* self)
 
 ///// IArrayBenchmarks /////
 
+// I64 benchmarks
 JointCore_Error Benchmarks_MeasureGetI64Element(Benchmarks* self, int64_t n, JointCore_Exception_Handle* ex)
 {
     int64_t i;

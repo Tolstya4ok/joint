@@ -6,6 +6,7 @@
 
 #include <joint.cpp/Ptr.hpp>
 #include <joint.cpp/Result.hpp>
+#include <joint.cpp/String.hpp>
 #include <joint.cpp/detail/ClassContentChecks.hpp>
 #include <joint.cpp/detail/Config.hpp>
 #include <joint.cpp/detail/JointCall.hpp>
@@ -56,20 +57,22 @@ namespace joint
 
 
         template < >
-        struct ArrayHelper<std::string, void>
+        struct ArrayHelper<String, void>
         {
             static const int ArrayDepth = 1;
 
             static void FillType(JointCore_Type* storage)
             { storage->id = JOINT_CORE_TYPE_UTF8; }
 
-            static std::string FromJointValue(JointCore_Value value)
-            { return value.utf8; }
+            static String FromJointValue(JointCore_Value value)
+            {
+                return String(value.utf8);
+            }
 
-            static JOINT_CPP_RET_TYPE(void) SetArrayElement(JointCore_ArrayHandle handle, JointCore_SizeT index, const std::string& value)
+            static JOINT_CPP_RET_TYPE(void) SetArrayElement(JointCore_ArrayHandle handle, JointCore_SizeT index, const String& value)
             {
                 JointCore_Value jv;
-                jv.utf8 = value.c_str();
+                jv.utf8 = value.Utf8Bytes().data();
                 JOINT_CALL(Joint_ArraySet(handle, index, jv));
                 JOINT_CPP_RETURN_VOID();
             }

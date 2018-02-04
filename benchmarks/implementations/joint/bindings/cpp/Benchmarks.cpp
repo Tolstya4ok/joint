@@ -45,18 +45,24 @@ public:
     >;
 
 private:
-    ModuleContext   _moduleContext;
-    Array<int64_t>  _array;
-    String          _string3;
-    String          _string100;
-    std::string     _nativeString3;
-    std::string     _nativeString100;
-    IObject_Ptr     _obj;
+    ModuleContext          _moduleContext;
+    Array<int64_t>         _arrayOfInts;
+    Array<ArrayStruct>     _arrayOfStructs;
+    Array<String>          _arrayOfStrings;
+    Array<Array<int64_t> > _arrayOfArrays;
+    String                 _string3;
+    String                 _string100;
+    std::string            _nativeString3;
+    std::string            _nativeString100;
+    IObject_Ptr            _obj;
 
 public:
     Benchmarks(const ModuleContext& moduleContext)
         : _moduleContext(moduleContext),
-          _array(JOINT_CPP_RET_VALUE(Array<int64_t>::Create(100))),
+          _arrayOfInts(JOINT_CPP_RET_VALUE(Array<int64_t>::Create(100))),
+          _arrayOfStructs(JOINT_CPP_RET_VALUE(Array<ArrayStruct>::Create(100))),
+          _arrayOfStrings(JOINT_CPP_RET_VALUE(Array<String>::Create(100))),
+          _arrayOfArrays(JOINT_CPP_RET_VALUE(Array<Array<int64_t> >::Create(100))),
           _string3("abc"),
           _string100("1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"),
           _nativeString3("abc"),
@@ -69,17 +75,75 @@ public:
 
     ///// IArrayBenchmarks /////
 
+    // I64 benchmarks
 
     JOINT_CPP_RET_TYPE(void) MeasureGetI64Element(int64_t n)
-    { for (int64_t i = 0; i < n; ++i) _array[0]; JOINT_CPP_RETURN_VOID(); }
+    { for (int64_t i = 0; i < n; ++i) _arrayOfInts[0]; JOINT_CPP_RETURN_VOID(); }
 
     JOINT_CPP_RET_TYPE(void) MeasureSetI64Element(int64_t n)
-    { for (int64_t i = 0; i < n; ++i) _array.Set(0, 0); JOINT_CPP_RETURN_VOID(); }
+    { for (int64_t i = 0; i < n; ++i) _arrayOfInts.Set(0, 0); JOINT_CPP_RETURN_VOID(); }
 
     JOINT_CPP_RET_TYPE(void) MeasureNativeGetI64Element(int64_t n)
     { JOINT_CPP_THROW(Exception("Not implemented")); }
 
     JOINT_CPP_RET_TYPE(void) MeasureNativeSetI64Element(int64_t n)
+    { JOINT_CPP_THROW(Exception("Not implemented")); }
+
+    // Struct benchmarks
+
+    JOINT_CPP_RET_TYPE(void) MeasureGetStructElement(int64_t n)
+    { for (int64_t i = 0; i < n; ++i) _arrayOfStructs[0]; JOINT_CPP_RETURN_VOID(); }
+
+    JOINT_CPP_RET_TYPE(void) MeasureSetStructElement(int64_t n)
+    {
+        ArrayStruct arrayStruct(1, 2, 3, 4);
+        for (int64_t i = 0; i < n; ++i)
+            _arrayOfStructs.Set(0, arrayStruct);
+        JOINT_CPP_RETURN_VOID();
+    }
+
+    JOINT_CPP_RET_TYPE(void) MeasureNativeGetStructElement(int64_t n)
+    { JOINT_CPP_THROW(Exception("Not implemented")); }
+
+    JOINT_CPP_RET_TYPE(void) MeasureNativeSetStructElement(int64_t n)
+    { JOINT_CPP_THROW(Exception("Not implemented")); }
+
+    // String benchmarks
+
+    JOINT_CPP_RET_TYPE(void) MeasureGetStringElement(int64_t n)
+    { for (int64_t i = 0; i < n; ++i) _arrayOfStrings[0]; JOINT_CPP_RETURN_VOID(); }
+
+    JOINT_CPP_RET_TYPE(void) MeasureSetStringElement(int64_t n)
+    {
+        String str("SomeString");
+        for (int64_t i = 0; i < n; ++i)
+            _arrayOfStrings.Set(0, str);
+        JOINT_CPP_RETURN_VOID();
+    }
+
+    JOINT_CPP_RET_TYPE(void) MeasureNativeGetStringElement(int64_t n)
+    { JOINT_CPP_THROW(Exception("Not implemented")); }
+
+    JOINT_CPP_RET_TYPE(void) MeasureNativeSetStringElement(int64_t n)
+    { JOINT_CPP_THROW(Exception("Not implemented")); }
+
+    // Array benchmarks
+
+    JOINT_CPP_RET_TYPE(void) MeasureGetArrayElement(int64_t n)
+    { for (int64_t i = 0; i < n; ++i) _arrayOfArrays[0]; JOINT_CPP_RETURN_VOID(); }
+
+    JOINT_CPP_RET_TYPE(void) MeasureSetArrayElement(int64_t n)
+    {
+        Array<int64_t> arrayVal = JOINT_CPP_RET_VALUE(Array<int64_t>::Create(100));
+        for (int64_t i = 0; i < n; ++i)
+            _arrayOfArrays.Set(0, arrayVal);
+        JOINT_CPP_RETURN_VOID();
+    }
+
+    JOINT_CPP_RET_TYPE(void) MeasureNativeGetArrayElement(int64_t n)
+    { JOINT_CPP_THROW(Exception("Not implemented")); }
+
+    JOINT_CPP_RET_TYPE(void) MeasureNativeSetArrayElement(int64_t n)
     { JOINT_CPP_THROW(Exception("Not implemented")); }
 
 

@@ -47,8 +47,6 @@ set(SOURCES
     joint/Joint.h
     joint/JsonParser.l
     joint/JsonParser.y
-    joint/private/Joint_Array.cpp
-    joint/private/Joint_Array.hpp
     joint/private/JsonNode.cpp
     joint/private/JsonNode.hpp
     joint/private/JsonObjectAssembler.cpp

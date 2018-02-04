@@ -1,28 +1,11 @@
 # C++
 |               | array.Get(), ns | array.Set(), ns |
 | ------------- | ------------: | --------: |
-| Native call | - | - |
-| Proxy-side call | ${array.proxy_array_get_i64.joint(lang:cpp)[main]} | ${array.proxy_array_set_i64.joint(lang:cpp)[main]} |
-
-# C++ (no exceptions)
-|               | array.Get(), ns | array.Set(), ns |
-| ------------- | ------------: | --------: |
-| Native call | - | - |
-| Proxy-side call | ${array.proxy_array_get_i64.joint(lang:cpp_ne)[main]} | ${array.proxy_array_set_i64.joint(lang:cpp_ne)[main]} |
-
-# C
-|               | array.Get(), ns | array.Set(), ns |
-| ------------- | ------------: | --------: |
-| Native call | - | - |
-| Proxy-side call | ${array.proxy_array_get_i64.joint(lang:c)[main]} | ${array.proxy_array_set_i64.joint(lang:c)[main]} |
-
-# Python
-|               | array.Get(), ns | array.Set(), ns |
-| ------------- | ------------: | --------: |
-| Native call | ${array.native_array_get_i64.joint(lang:python)[main]} | ${array.native_array_set_i64.joint(lang:python)[main]} |
-| Proxy-side call | ${array.proxy_array_get_i64.joint(lang:python)[main]} | ${array.proxy_array_set_i64.joint(lang:python)[main]} |
-
-# Java
-|               | array.Get(), ns | array.Set(), ns |
-| ------------- | ------------: | --------: |
-| Proxy-side call | ${array.proxy_array_get_i64.joint(lang:java)[main]} | ${array.proxy_array_set_i64.joint(lang:java)[main]} |
+| Native call for i64    | - | - |
+| Proxy-side call i64    | ${array.proxy_array_get_i64.joint(lang:cpp)[main]} | ${array.proxy_array_set_i64.joint(lang:cpp)[main]} |
+| Native call for struct | - | - |
+| Proxy-side call struct | ${array.proxy_array_get_struct.joint(lang:cpp)[main]} | ${array.proxy_array_set_struct.joint(lang:cpp)[main]} |
+| Native call for string | - | - |
+| Proxy-side call string | ${array.proxy_array_get_string.joint(lang:cpp)[main]} | ${array.proxy_array_set_string.joint(lang:cpp)[main]} |
+| Native call for array  | - | - |
+| Proxy-side call array  | ${array.proxy_array_get_array.joint(lang:cpp)[main]} | ${array.proxy_array_set_array.joint(lang:cpp)[main]} |

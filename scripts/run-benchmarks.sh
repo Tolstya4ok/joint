@@ -11,5 +11,5 @@ fi
 TEMPLATE="$1"
 
 export PYTHONPATH="$ROOT_DIR/build/bin:$ROOT_DIR/benchmarks/implementations/swig"
-clear
+#clear
 "$ROOT_DIR/benchmarks/core/bin/benchmarks-template.py" -c3 -v2 -e ./build/bin/joint-benchmarks -t "$ROOT_DIR/$TEMPLATE"

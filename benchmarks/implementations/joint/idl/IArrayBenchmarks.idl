@@ -1,12 +1,35 @@
 package benchmarks
 {
 
+    struct ArrayStruct
+    {
+        i32 a;
+        i32 b;
+        i32 c;
+        i32 d;
+    }
+
     interface IArrayBenchmarks
     {
         void MeasureGetI64Element(i64 n);
         void MeasureSetI64Element(i64 n);
         void MeasureNativeGetI64Element(i64 n);
         void MeasureNativeSetI64Element(i64 n);
+
+        void MeasureGetStructElement(i64 n);
+        void MeasureSetStructElement(i64 n);
+        void MeasureNativeGetStructElement(i64 n);
+        void MeasureNativeSetStructElement(i64 n);
+
+        void MeasureGetStringElement(i64 n);
+        void MeasureSetStringElement(i64 n);
+        void MeasureNativeGetStringElement(i64 n);
+        void MeasureNativeSetStringElement(i64 n);
+
+        void MeasureGetArrayElement(i64 n);
+        void MeasureSetArrayElement(i64 n);
+        void MeasureNativeGetArrayElement(i64 n);
+        void MeasureNativeSetArrayElement(i64 n);
     }
 
 }
